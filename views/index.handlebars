@@ -1,0 +1,33 @@
+<div id="wrapper">
+
+    <img src="../public/assets/images/burgerface.png" alt="Burger Face" style="width:150px">
+    <br>
+    <h3>It's Burger Time!</h3>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <ul>
+            {{#each burgers}} {{#unless this.devoured}}
+            <li>
+                {{this.burger_name}}
+                <form action="/{{this.id}}?_method=PUT" method="POST">
+                    <input type="hidden" name="devoured" value="true">
+                    <button type="submit" class="btn btn-danger">Devour it!</button>
+                </form>
+            </li>
+            {{/unless}} {{/each}}
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <ul>
+            {{#each burgers}} {{if this.devoured}}
+            <li>
+                {{this.burger_name}}
+            </li>
+        </ul>
+    </div>
+</div>
